@@ -57,6 +57,34 @@ def find_directions(col, row):
         valid_directions = SOUTH+WEST
     return valid_directions
 
+
+
+def pull_lever(col, row):
+
+    coins = 0
+    if col == 1 and row == 2: # (1,2)
+        answer = input("Pull a lever (y/n): ").lower()
+        if answer == "y":
+            coins += 1
+            print("You received 1 coin, your total is now " , coins , ".")
+    elif col == 2 and row == 2: # (2,2)
+        answer = input("Pull a lever (y/n): ").lower()
+        if answer == "y":
+            coins += 1
+            print("You received 1 coin, your total is now " , coins , ".")
+    elif col == 2 and row == 3: # (2,3)
+        answer = input("Pull a lever (y/n): ").lower()
+        if answer == "y":
+            coins += 1
+            print("You received 1 coin, your total is now " , coins , ".")
+    elif col == 3 and row == 2: # (3,2)
+        answer = input("Pull a lever (y/n): ").lower()
+        if answer == "y":
+            coins += 1
+            print("You received 1 coin, your total is now " , coins , ".")
+    return coins
+
+
 def play_one_move(col, row, valid_directions):
     ''' Plays one move of the game
         Return if victory has been obtained and updated col,row '''
@@ -85,6 +113,7 @@ while not victory:
         print("Victory!")
     else:
         valid_directions = find_directions(col, row)
+        pull_lever(col, row)
         print_directions(valid_directions)
 
 
