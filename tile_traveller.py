@@ -86,3 +86,6 @@ while not victory:
     else:
         valid_directions = find_directions(col, row)
         print_directions(valid_directions)
+
+
+        #kfkfkfkfk
