@@ -59,33 +59,19 @@ def find_directions(col, row):
 
 
 
-def pull_lever(col, row):
+def pull_lever(col, row, coins):
 
-    coins = 0
-    if col == 1 and row == 2: # (1,2)
+
+    if (col, row) in [(1,2),(2,2),(2,3),(3,2)]:
         answer = input("Pull a lever (y/n): ").lower()
         if answer == "y":
             coins += 1
             print("You received 1 coin, your total is now " , coins , ".")
-    elif col == 2 and row == 2: # (2,2)
-        answer = input("Pull a lever (y/n): ").lower()
-        if answer == "y":
-            coins += 1
-            print("You received 1 coin, your total is now " , coins , ".")
-    elif col == 2 and row == 3: # (2,3)
-        answer = input("Pull a lever (y/n): ").lower()
-        if answer == "y":
-            coins += 1
-            print("You received 1 coin, your total is now " , coins , ".")
-    elif col == 3 and row == 2: # (3,2)
-        answer = input("Pull a lever (y/n): ").lower()
-        if answer == "y":
-            coins += 1
-            print("You received 1 coin, your total is now " , coins , ".")
+    
     return coins
 
 
-def play_one_move(col, row, valid_directions):
+def play_one_move(col, row, valid_directions, coins):
     ''' Plays one move of the game
         Return if victory has been obtained and updated col,row '''
     victory = False
@@ -97,23 +83,24 @@ def play_one_move(col, row, valid_directions):
     else:
         col, row = move(direction, col, row)
         victory = is_victory(col, row)
+        coins = pull_lever(col, row, coins)
     return victory, col, row
 
 # The main program starts here
 victory = False
 row = 1
 col = 1
+coins = 0
 
 valid_directions = NORTH
 print_directions(valid_directions)
 
 while not victory:
-    victory, col, row = play_one_move(col, row, valid_directions)
+    victory, col, row = play_one_move(col, row, valid_directions, coins)
     if victory:
         print("Victory!")
     else:
         valid_directions = find_directions(col, row)
-        pull_lever(col, row)
         print_directions(valid_directions)
 
 
